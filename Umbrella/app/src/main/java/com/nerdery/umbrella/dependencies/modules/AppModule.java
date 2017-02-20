@@ -7,6 +7,7 @@ import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.data.api.ApiManager;
 import com.nerdery.umbrella.data.api.WeatherApi;
 import com.nerdery.umbrella.dependencies.AppScope;
+import com.nerdery.umbrella.utils.SharedPrefsManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,6 +28,12 @@ public class AppModule {
     @AppScope
     Context providesApplicationContext(){
         return application;
+    }
+
+    @Provides
+    @AppScope
+    SharedPrefsManager providesSharedPrefsManager(){
+        return new SharedPrefsManager(application);
     }
 
 }

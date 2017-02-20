@@ -9,8 +9,10 @@ import android.preference.PreferenceManager;
  */
 
 public class SharedPrefsManager {
-    private static final String ZIP_CODE = "umbrella.zip";
-    private static final String UNITS = "umbrella.units";
+    public static final String ZIP = "zip";
+    public static final String UNITS = "units";
+    public static final int ZIP_EXISTS = -1;
+    public static final int ZIP_DEFAULT = 74112;
 
     private SharedPreferences sharedPreferences;
 
