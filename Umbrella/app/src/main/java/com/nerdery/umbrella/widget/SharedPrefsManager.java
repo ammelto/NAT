@@ -1,4 +1,4 @@
-package com.nerdery.umbrella.utils;
+package com.nerdery.umbrella.widget;
 
 import android.app.Application;
 import android.content.SharedPreferences;

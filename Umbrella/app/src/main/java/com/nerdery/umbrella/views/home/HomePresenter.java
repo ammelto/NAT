@@ -1,22 +1,15 @@
 package com.nerdery.umbrella.views.home;
 
-import android.util.Log;
-
-import com.nerdery.umbrella.R;
+import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.base.mvp.BasePresenter;
 import com.nerdery.umbrella.data.api.ApiManager;
-import com.nerdery.umbrella.data.api.IconApi;
-import com.nerdery.umbrella.data.api.WeatherApi;
 import com.nerdery.umbrella.data.model.CurrentObservation;
 import com.nerdery.umbrella.data.model.ForecastCondition;
 import com.nerdery.umbrella.data.model.WeatherData;
-import com.nerdery.umbrella.utils.SharedPrefsManager;
+import com.nerdery.umbrella.widget.SharedPrefsManager;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -63,7 +56,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 });
     }
 
-    private void parseWeather(WeatherData weatherData){
+    public void parseWeather(WeatherData weatherData){
         List<ForecastCondition> forecastConditionList = weatherData.forecast;
         CurrentObservation currentObservation = weatherData.currentObservation;
         String unit = sharedPrefsManager.getValue(SharedPrefsManager.UNITS, "imperial");
@@ -74,6 +67,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             homeView.onInvalidZip();
             return;
         }
+        Umbrella.getInstance().setWeatherData(weatherData);
         homeView.setActionBarColor(currentObservation.tempFahrenheit);
         homeView.setAreaName(currentObservation.displayLocation.full);
         homeView.setCurrentTemperature(unit.equals(SharedPrefsManager.IMPERIAL_UNITS) ?

@@ -1,11 +1,6 @@
 package com.nerdery.umbrella.dependencies.modules;
 
-import android.content.Context;
-
-import com.nerdery.umbrella.Umbrella;
-import com.nerdery.umbrella.data.api.ApiManager;
-import com.nerdery.umbrella.dependencies.AppScope;
-import com.nerdery.umbrella.utils.SharedPrefsManager;
+import com.nerdery.umbrella.widget.SharedPrefsManager;
 import com.nerdery.umbrella.views.home.HomePresenter;
 
 import dagger.Module;

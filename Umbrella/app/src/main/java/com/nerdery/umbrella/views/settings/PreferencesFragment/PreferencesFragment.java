@@ -7,9 +7,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.nerdery.umbrella.R;
-import com.nerdery.umbrella.utils.SharedPrefsManager;
-
-import java.util.prefs.PreferenceChangeListener;
+import com.nerdery.umbrella.widget.SharedPrefsManager;
 
 /**
  * Created by Alexander Melton on 2/20/2017.

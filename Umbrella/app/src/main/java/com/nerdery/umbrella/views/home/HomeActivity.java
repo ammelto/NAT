@@ -3,7 +3,6 @@ package com.nerdery.umbrella.views.home;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -15,7 +14,8 @@ import android.widget.TextView;
 import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.base.BaseActivity;
-import com.nerdery.umbrella.utils.SharedPrefsManager;
+import com.nerdery.umbrella.data.model.WeatherData;
+import com.nerdery.umbrella.widget.SharedPrefsManager;
 import com.nerdery.umbrella.views.settings.SettingsActivity;
 
 import javax.inject.Inject;
@@ -60,6 +60,10 @@ public class HomeActivity extends BaseActivity implements HomeView{
     protected void onResume() {
         super.onResume();
         homePresenter.attachView(this);
+        WeatherData cachedWeatherData = Umbrella.getInstance().getWeatherData();
+        if(cachedWeatherData != null){
+            homePresenter.parseWeather(cachedWeatherData);
+        }
     }
 
     @Override
