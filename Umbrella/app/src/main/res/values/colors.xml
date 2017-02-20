@@ -4,6 +4,9 @@
     <color name="weather_warm">#ff9800</color>
     <color name="weather_cool">#03a9f4</color>
 
+    <color name="text_default">@android:color/black</color>
+    <color name="text_secondary">@android:color/white</color>
+
     <!-- Forecast card colors -->
     <color name="forecast_card_divider">#ccc</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.nerdery.umbrella.model;
+package com.nerdery.umbrella.data.model;
 
 /**
  * Represents a "display_location" returned from Weather Underground

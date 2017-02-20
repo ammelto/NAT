@@ -2,4 +2,7 @@
     <string name="app_name">Umbrella</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <string name="temperature_current">%1$d\u00b0</string>
+    <string name="temperature_flavor">Flavor Text</string>
 </resources>

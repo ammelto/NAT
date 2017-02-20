@@ -1,11 +1,11 @@
-package com.nerdery.umbrella.api.parser;
+package com.nerdery.umbrella.data.api.parser;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.nerdery.umbrella.model.ForecastCondition;
+import com.nerdery.umbrella.data.model.ForecastCondition;
 
 import java.lang.reflect.Type;
 import java.util.Date;

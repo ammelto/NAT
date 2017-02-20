@@ -1,4 +1,4 @@
-package com.nerdery.umbrella.model;
+package com.nerdery.umbrella.data.model;
 
 import java.util.Date;
 

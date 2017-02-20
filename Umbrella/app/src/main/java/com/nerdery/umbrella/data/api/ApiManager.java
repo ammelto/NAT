@@ -1,12 +1,13 @@
-package com.nerdery.umbrella.api;
+package com.nerdery.umbrella.data.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.nerdery.umbrella.BuildConfig;
-import com.nerdery.umbrella.api.parser.ForecastParser;
-import com.nerdery.umbrella.model.ForecastCondition;
-import retrofit2.GsonConverterFactory;
+import com.nerdery.umbrella.data.api.parser.ForecastParser;
+import com.nerdery.umbrella.data.model.ForecastCondition;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Manages access to the various APIs we are using
@@ -44,6 +45,7 @@ public class ApiManager {
 
         Retrofit adapter = new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
