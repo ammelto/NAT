@@ -10,6 +10,9 @@
 
     <string name="settings_zip">Zipcode</string>
     <string name="settings_units">Units</string>
+
+    <string name="invalid_zip_snack">Zipcode not found</string>
+    <string name="invalid_zip_action">EDIT ZIPCODE</string>
     
     <string-array name="units_entries">
         <item>Celsius</item>

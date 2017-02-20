@@ -13,6 +13,9 @@ public class SharedPrefsManager {
     public static final String UNITS = "units";
     public static final int ZIP_EXISTS = -1;
     public static final int ZIP_DEFAULT = 74112;
+    public static final String IMPERIAL_UNITS = "imperial";
+    public static final String METRIC_UNITS = "metric";
+    public static final int TEMPERATURE_THRESHOLD = 60;
 
     private SharedPreferences sharedPreferences;
 

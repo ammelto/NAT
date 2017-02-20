@@ -8,7 +8,7 @@
         android:key="zip"
         android:defaultValue="74112"
         tools:summary="74112"
-        android:inputType="number"
+        android:inputType="numberSigned"
         />
 
     <ListPreference
