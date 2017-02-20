@@ -5,4 +5,20 @@
 
     <string name="temperature_current">%1$d\u00b0</string>
     <string name="temperature_flavor">Flavor Text</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="settings_zip">Zipcode</string>
+    <string name="settings_units">Units</string>
+    
+    <string-array name="units_entries">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+    </string-array>
+
+    <string-array name="units_values">
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
+
 </resources>

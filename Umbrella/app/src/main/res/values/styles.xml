@@ -1,14 +1,27 @@
 <resources>
 
+    <!-- Do not put magic color hexes here, only references-->
     <!-- Base application theme. -->
-    <style name="WarmTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/weather_warm</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
-    <style name="ColdTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Created a separate style for the settings and home action bar.
+         This way I don't have to change the color every time
+         they go to the settings screen. -->
+
+    <style name="AppTheme.SettingsActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/weather_cool</item>
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
+
+    <style name="AppTheme.HomeActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/weather_warm</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
 
 </resources>

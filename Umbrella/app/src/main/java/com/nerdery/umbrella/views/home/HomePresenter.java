@@ -46,7 +46,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         List<ForecastCondition> forecastConditionList = weatherData.forecast;
         CurrentObservation currentObservation = weatherData.currentObservation;
 
-        getView().setTheme(currentObservation.tempFahrenheit);
+        HomeView homeView = getView();
+        homeView.setActionBarColor(getWeatherColor(currentObservation.tempFahrenheit));
+        homeView.setAreaName(currentObservation.displayLocation.full);
+    }
+
+    private int getWeatherColor(float temp){
+        return temp < this.TEMPERATURE_THRESHOLD ? R.color.weather_cool : R.color.weather_warm;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.nerdery.umbrella.base;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -37,5 +39,20 @@ public class BaseActivity extends AppCompatActivity {
 
     protected int getLayoutResource(){
         return R.layout.activity_base;
+    }
+
+    protected void attachFragment(int containerViewId, Fragment fragment){
+        attachFragment(containerViewId, fragment, false);
+    }
+
+    protected void attachFragment(int containerViewId, Fragment fragment, boolean addToBackstack){
+        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(containerViewId, fragment, fragment.getClass().getSimpleName());
+
+        if(addToBackstack){
+            fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+        }
+
+        fragmentTransaction.commit();
     }
 }

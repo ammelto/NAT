@@ -8,5 +8,8 @@ import com.nerdery.umbrella.base.mvp.BaseView;
 
 public interface HomeView extends BaseView{
 
-    void setTheme(float tempF);
+    void setActionBarColor(int color);
+
+    void setAreaName(String name);
+
 }
