@@ -22,5 +22,4 @@ public interface AppGraph {
 
     void inject(HomeActivity homeActivity);
 
-    void inject(ViewHolderHourlyForecast viewHolderHourlyForecast);
 }

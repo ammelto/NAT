@@ -52,6 +52,6 @@ public class ViewHolderHourlyForecast extends RecyclerView.ViewHolder {
         imageView.setColorFilter(color);
         cellHourTextView.setTextColor(color);
         cellTemperatureTextView.setTextColor(color);
-        
+
     }
 }
