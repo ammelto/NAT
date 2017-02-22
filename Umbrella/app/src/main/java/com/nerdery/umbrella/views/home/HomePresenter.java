@@ -11,17 +11,12 @@ import com.nerdery.umbrella.data.model.ForecastHour;
 import com.nerdery.umbrella.data.model.WeatherData;
 import com.nerdery.umbrella.widget.SharedPrefsManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -107,8 +102,6 @@ public class HomePresenter extends BasePresenter<HomeView> {
         int tomorrow = calendar.get(Calendar.DAY_OF_WEEK);
         String day;
 
-        Timber.d(today + "" + tomorrow + "");
-
         for(ForecastCondition condition : conditions){
             if(condition.calendar.get(Calendar.DAY_OF_WEEK) == today) day = "Today";
             else if(condition.calendar.get(Calendar.DAY_OF_WEEK) == tomorrow) day = "Tomorrow";
@@ -137,6 +130,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
         Float tempFloat = unit.equals(SharedPrefsManager.IMPERIAL_UNITS) ? condition.tempFahrenheit : condition.tempCelsius;
 
         forecastHour.hour = condition.displayTime;
+        forecastHour.temperatureValue = Math.round(tempFloat);
         forecastHour.temperature = String.format(Umbrella.getInstance().getResources().getString(R.string.temperature_current),
                 Math.round(tempFloat));
         forecastHour.imageUrl = condition.icon;

@@ -8,4 +8,7 @@ public class ForecastHour {
     public String temperature;
     public String imageUrl;
     public String hour;
+    public int temperatureValue;
+    public Boolean isLocalDailyMax = false;
+    public Boolean isLocalDailyMin = false;
 }

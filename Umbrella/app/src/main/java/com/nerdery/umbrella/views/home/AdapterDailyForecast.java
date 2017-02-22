@@ -11,6 +11,7 @@ import com.nerdery.umbrella.base.BaseRecyclerAdapter;
 import com.nerdery.umbrella.data.model.ForecastDay;
 
 import java.util.List;
+import java.util.PrimitiveIterator;
 
 import timber.log.Timber;
 
