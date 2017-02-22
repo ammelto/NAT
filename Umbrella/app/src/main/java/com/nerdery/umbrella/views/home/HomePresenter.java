@@ -1,17 +1,20 @@
 package com.nerdery.umbrella.views.home;
 
+import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.base.mvp.BasePresenter;
 import com.nerdery.umbrella.data.api.ApiManager;
 import com.nerdery.umbrella.data.model.CurrentObservation;
 import com.nerdery.umbrella.data.model.ForecastCondition;
 import com.nerdery.umbrella.data.model.ForecastDay;
+import com.nerdery.umbrella.data.model.ForecastHour;
 import com.nerdery.umbrella.data.model.WeatherData;
 import com.nerdery.umbrella.widget.SharedPrefsManager;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -91,28 +94,44 @@ public class HomePresenter extends BasePresenter<HomeView> {
             Timber.d(condition.calendar.get(Calendar.DAY_OF_WEEK) + "");
         }
 
-        splitByDay(forecastConditionList);
+        splitByDay(forecastConditionList, unit);
     }
 
-    protected void splitByDay(List<ForecastCondition> conditions){
-        Map<String, List<ForecastCondition>> conditionMap = new LinkedHashMap<>();
-        List<ForecastCondition> forecastConditionList;
+    protected List<ForecastDay> splitByDay(List<ForecastCondition> conditions, String unit){
+        Map<String, List<ForecastHour>> forecastHoursMap = new LinkedHashMap<>();
+        List<ForecastHour> forecastHours;
         String day;
         for(ForecastCondition condition : conditions){
             day = condition.calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
 
-            if(conditionMap.containsKey(day)) forecastConditionList = conditionMap.get(day);
-            else forecastConditionList = new ArrayList<>();
+            if(forecastHoursMap.containsKey(day)) forecastHours = forecastHoursMap.get(day);
+            else forecastHours = new ArrayList<>();
 
-            forecastConditionList.add(condition);
-            conditionMap.put(day, forecastConditionList);
+            forecastHours.add(buildForecastHour(condition, unit));
+            forecastHoursMap.put(day, forecastHours);
         }
 
         List<ForecastDay> forecastDays = new ArrayList<>();
-        for(String key: conditionMap.keySet()){
-            forecastDays.add(new ForecastDay(key, conditionMap.get(key)));
+        for(String key: forecastHoursMap.keySet()){
+            forecastDays.add(new ForecastDay(key, forecastHoursMap.get(key)));
         }
+
         getView().onBindAdapter(forecastDays);
+
+        return forecastDays;
+    }
+
+    private ForecastHour buildForecastHour(ForecastCondition condition,String unit){
+        ForecastHour forecastHour = new ForecastHour();
+
+        Float tempFloat = unit.equals(SharedPrefsManager.IMPERIAL_UNITS) ? condition.tempFahrenheit : condition.tempCelsius;
+
+        forecastHour.hour = condition.displayTime;
+        forecastHour.temperature = String.format(Umbrella.getInstance().getResources().getString(R.string.temperature_current),
+                Math.round(tempFloat));
+        forecastHour.imageUrl = condition.icon;
+
+        return forecastHour;
     }
 
 }

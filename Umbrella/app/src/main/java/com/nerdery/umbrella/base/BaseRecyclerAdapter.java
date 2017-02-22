@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import timber.log.Timber;
+
 
 /**
  * Created by <a href="mailto:marcus@gabilheri.com">Marcus Gabilheri</a>
@@ -21,7 +23,7 @@ import java.util.List;
 public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> {
 
-    protected List<T> mElements;
+    private List<T> mElements;
 
     public BaseRecyclerAdapter() {
         mElements = new ArrayList<>();
@@ -39,6 +41,7 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     public void addAll(List<T> elements) {
         mElements.addAll(elements);
         notifyDataSetChanged();
+        //Timber.d();
     }
 
     public void remove(T element) {
@@ -53,7 +56,7 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
 
     public void swapData(List<T> elements) {
         mElements.clear();
-        addAll(elements);
+        this.addAll(elements);
     }
 
     public void clear() {
@@ -70,6 +73,10 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     @Override
     public int getItemCount() {
         return mElements.size();
+    }
+
+    public T get(int position) {
+        return this.mElements.get(position);
     }
 
     public abstract @LayoutRes int getLayoutRes();

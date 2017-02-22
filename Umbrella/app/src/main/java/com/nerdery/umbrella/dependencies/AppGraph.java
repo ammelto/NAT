@@ -7,6 +7,7 @@ import com.nerdery.umbrella.data.api.WeatherApi;
 import com.nerdery.umbrella.dependencies.modules.AppModule;
 import com.nerdery.umbrella.dependencies.modules.PresenterModule;
 import com.nerdery.umbrella.views.home.HomeActivity;
+import com.nerdery.umbrella.views.home.ViewHolderHourlyForecast;
 
 import dagger.Component;
 
@@ -20,4 +21,6 @@ public interface AppGraph {
     void inject(Umbrella application);
 
     void inject(HomeActivity homeActivity);
+
+    void inject(ViewHolderHourlyForecast viewHolderHourlyForecast);
 }

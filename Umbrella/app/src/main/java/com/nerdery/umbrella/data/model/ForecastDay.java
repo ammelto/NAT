@@ -1,25 +1,32 @@
 package com.nerdery.umbrella.data.model;
 
+import android.content.Context;
+
+import com.nerdery.umbrella.R;
+import com.nerdery.umbrella.widget.SharedPrefsManager;
+
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Alexander Melton on 2/21/2017.
  */
 
 public class ForecastDay {
-    private List<ForecastCondition> forecastConditions;
+    private List<ForecastHour> forecastHours;
     private String day;
 
-    public ForecastDay(String day, List<ForecastCondition> forecastConditions){
+    public ForecastDay(String day, List<ForecastHour> forecastHours){
         this.day = day;
-        this.forecastConditions = forecastConditions;
+        this.forecastHours = forecastHours;
     }
 
-    public List<ForecastCondition> getForecastConditions() {
-        return forecastConditions;
+    public List<ForecastHour> getForecastHours() {
+        return forecastHours;
     }
 
     public String getDay() {
         return day;
     }
+
 }

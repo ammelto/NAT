@@ -33,4 +33,5 @@ public class AppModule {
         return new SharedPrefsManager(application);
     }
 
+
 }

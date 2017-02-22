@@ -1,15 +1,18 @@
 package com.nerdery.umbrella.views.home;
 
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.base.BaseRecyclerAdapter;
-import com.nerdery.umbrella.data.model.ForecastCondition;
 import com.nerdery.umbrella.data.model.ForecastDay;
-import com.nerdery.umbrella.data.model.WeatherData;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/21/2017.
@@ -24,7 +27,8 @@ public class AdapterDailyForecast extends BaseRecyclerAdapter<ForecastDay, ViewH
 
     @Override
     public void onBindViewHolder(ViewHolderDailyForecast holder, int position) {
-
+        Timber.d("Binding" + position);
+        holder.bind(get(position));
     }
 
     @Override

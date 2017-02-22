@@ -7,11 +7,13 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nerdery.umbrella.R;
@@ -28,6 +30,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/18/2017.
@@ -66,9 +69,15 @@ public class HomeActivity extends BaseActivity implements HomeView{
         Umbrella.getInstance().getAppGraph().inject(this);
         actionBar = getSupportActionBar();
 
-        dailyRecycler.setLayoutManager(new LinearLayoutManager(this));
-        DecorationDailyForecast decorationDailyForecast = new DecorationDailyForecast(R.dimen.card_gutter);
-        dailyRecycler.addItemDecoration(decorationDailyForecast);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        dailyRecycler.setLayoutManager(linearLayoutManager);
+
+        //DecorationDailyForecast decorationDailyForecast = new DecorationDailyForecast(R.dimen.card_gutter);
+        //dailyRecycler.addItemDecoration(decorationDailyForecast);
+
+        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        //dailyRecycler.addItemDecoration(dividerItemDecoration);
 
         adapterDailyForecast = new AdapterDailyForecast();
         dailyRecycler.setAdapter(adapterDailyForecast);
@@ -129,7 +138,9 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public void onBindAdapter(List<ForecastDay> forecastDays) {
+        Timber.d("Swapping in" + forecastDays.size());
         adapterDailyForecast.swapData(forecastDays);
+        Timber.d("Size: " + adapterDailyForecast.getItemCount());
     }
 
     @Override

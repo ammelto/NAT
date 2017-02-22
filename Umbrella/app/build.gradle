@@ -3,12 +3,12 @@ apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 25
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.nerdery.umbrella"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -34,7 +34,7 @@ android {
 
 dependencies {
 
-    def SUPPORT_LIB_VERSION = '23.1.1'
+    def SUPPORT_LIB_VERSION = '25.0.1'
     def RETROFIT_VERSION = '2.1.0'
     def DAGGER_VERSION = '2.9'
     def BUTTERKNIFE_VERSION = '8.5.1'
@@ -69,6 +69,9 @@ dependencies {
     compile 'io.reactivex:rxjava:1.2.4'
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
+    /*---------------------UI Stuff------------------------*/
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
     /*---------------------Debug stuff---------------------*/
     //Timber
