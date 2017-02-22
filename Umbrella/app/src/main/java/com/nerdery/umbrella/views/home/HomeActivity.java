@@ -73,11 +73,10 @@ public class HomeActivity extends BaseActivity implements HomeView{
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dailyRecycler.setLayoutManager(linearLayoutManager);
 
-        //DecorationDailyForecast decorationDailyForecast = new DecorationDailyForecast(R.dimen.card_gutter);
-        //dailyRecycler.addItemDecoration(decorationDailyForecast);
-
-        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        //dailyRecycler.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(dailyRecycler.getContext(),
+                linearLayoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(Umbrella.getInstance().getResources().getDrawable(R.drawable.card_gutter_12dp));
+        dailyRecycler.addItemDecoration(dividerItemDecoration);
 
         adapterDailyForecast = new AdapterDailyForecast();
         dailyRecycler.setAdapter(adapterDailyForecast);

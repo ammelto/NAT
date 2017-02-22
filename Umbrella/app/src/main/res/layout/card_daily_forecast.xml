@@ -4,9 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- Each cell has a 6dp gutter top and bottom
+        This means that the gutter between two rows is 12dp
+        But to account for this, we subtract the 6dp from the
+        parent gutter layout requirements -->
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="16dp"
+        android:paddingBottom="10dp"
         android:orientation="vertical"
         android:showDividers="middle"
         android:divider="@drawable/divider"
@@ -16,13 +21,13 @@
             android:id="@+id/daily_forecast_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             style="@style/TextAppearance.AppCompat.Title"
             android:text="@string/today"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/hourly_forecast_recycler"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

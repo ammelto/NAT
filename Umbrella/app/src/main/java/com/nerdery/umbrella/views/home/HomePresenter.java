@@ -100,9 +100,19 @@ public class HomePresenter extends BasePresenter<HomeView> {
     protected List<ForecastDay> splitByDay(List<ForecastCondition> conditions, String unit){
         Map<String, List<ForecastHour>> forecastHoursMap = new LinkedHashMap<>();
         List<ForecastHour> forecastHours;
+
+        Calendar calendar = Calendar.getInstance();
+        int today = calendar.get(Calendar.DAY_OF_WEEK);
+        calendar.add(Calendar.DAY_OF_WEEK, 1);
+        int tomorrow = calendar.get(Calendar.DAY_OF_WEEK);
         String day;
+
+        Timber.d(today + "" + tomorrow + "");
+
         for(ForecastCondition condition : conditions){
-            day = condition.calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
+            if(condition.calendar.get(Calendar.DAY_OF_WEEK) == today) day = "Today";
+            else if(condition.calendar.get(Calendar.DAY_OF_WEEK) == tomorrow) day = "Tomorrow";
+            else day = condition.calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
 
             if(forecastHoursMap.containsKey(day)) forecastHours = forecastHoursMap.get(day);
             else forecastHours = new ArrayList<>();

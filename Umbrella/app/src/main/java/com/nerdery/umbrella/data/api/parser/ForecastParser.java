@@ -34,7 +34,6 @@ public class ForecastParser implements JsonDeserializer<ForecastCondition> {
         condition.tempFahrenheit = Float.valueOf(tempEnglishString);
         condition.tempCelsius = Float.valueOf(tempMetricString);
         condition.condition = root.get("condition").getAsString();
-        Timber.d(root.toString());
 
         // Parse out time data
         JsonObject fcttime = root.getAsJsonObject("FCTTIME");

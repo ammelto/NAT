@@ -1,6 +1,7 @@
 package com.nerdery.umbrella.views.home;
 
 import android.content.Context;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,8 +43,6 @@ public class ViewHolderHourlyForecast extends RecyclerView.ViewHolder {
     public ViewHolderHourlyForecast(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        Umbrella.getInstance().getAppGraph().inject(this);
-
     }
 
     public void bind(ForecastHour forecastHour){
