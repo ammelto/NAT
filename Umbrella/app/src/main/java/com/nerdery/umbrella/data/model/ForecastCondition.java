@@ -1,5 +1,6 @@
 package com.nerdery.umbrella.data.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -19,6 +20,12 @@ public class ForecastCondition {
      * Date representation of the time associated with this forecast
      */
     public Date time;
+
+    /**
+     * Added
+     * Date representation of the time associated with this forecast as a calendar
+     */
+    public Calendar calendar;
 
     /**
      * The icon to use for this reading

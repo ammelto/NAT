@@ -13,7 +13,23 @@
 
     <string name="invalid_zip_snack">Zipcode not found</string>
     <string name="invalid_zip_action">EDIT ZIPCODE</string>
-    
+
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+
+    <string name="cell_hour">HOUR</string>
+    <string name="cell_temperature">TEMP</string>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
     <string-array name="units_entries">
         <item>Celsius</item>
         <item>Fahrenheit</item>

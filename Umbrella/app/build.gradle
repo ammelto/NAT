@@ -36,7 +36,6 @@ dependencies {
 
     def SUPPORT_LIB_VERSION = '23.1.1'
     def RETROFIT_VERSION = '2.1.0'
-    def RETROFIT_RX_ADAPTER_VERSION = '1.0.0'
     def DAGGER_VERSION = '2.9'
     def BUTTERKNIFE_VERSION = '8.5.1'
 
@@ -45,6 +44,7 @@ dependencies {
     //Base android stuff
     compile "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
     compile "com.android.support:recyclerview-v7:$SUPPORT_LIB_VERSION"
+    compile "com.android.support:cardview-v7:$SUPPORT_LIB_VERSION"
     compile "com.android.support:design:$SUPPORT_LIB_VERSION"
     compile "com.android.support:support-annotations:$SUPPORT_LIB_VERSION"
     compile "com.android.support:support-v13:$SUPPORT_LIB_VERSION"

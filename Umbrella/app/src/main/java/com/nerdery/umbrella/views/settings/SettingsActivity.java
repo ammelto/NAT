@@ -7,7 +7,7 @@ import android.support.v7.app.ActionBar;
 
 import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.base.BaseActivity;
-import com.nerdery.umbrella.views.settings.PreferencesFragment.PreferencesFragment;
+import com.nerdery.umbrella.views.settings.preferences.PreferencesFragment;
 
 /**
  * Created by Alexander Melton on 2/18/2017.

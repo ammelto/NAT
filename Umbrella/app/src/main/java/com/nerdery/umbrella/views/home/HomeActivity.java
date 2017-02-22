@@ -7,16 +7,23 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.base.BaseActivity;
+import com.nerdery.umbrella.data.model.ForecastCondition;
+import com.nerdery.umbrella.data.model.ForecastDay;
 import com.nerdery.umbrella.data.model.WeatherData;
 import com.nerdery.umbrella.widget.SharedPrefsManager;
 import com.nerdery.umbrella.views.settings.SettingsActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,6 +42,8 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     Snackbar snackbar;
 
+    AdapterDailyForecast adapterDailyForecast;
+
     @BindView(R.id.appbar)
     AppBarLayout appBar;
 
@@ -47,12 +56,22 @@ public class HomeActivity extends BaseActivity implements HomeView{
     @BindView(R.id.main_content)
     CoordinatorLayout coordinatorLayout;
 
+    @BindView(R.id.daily_forecast_recycler)
+    RecyclerView dailyRecycler;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Umbrella.getInstance().getAppGraph().inject(this);
         actionBar = getSupportActionBar();
+
+        dailyRecycler.setLayoutManager(new LinearLayoutManager(this));
+        DecorationDailyForecast decorationDailyForecast = new DecorationDailyForecast(R.dimen.card_gutter);
+        dailyRecycler.addItemDecoration(decorationDailyForecast);
+
+        adapterDailyForecast = new AdapterDailyForecast();
+        dailyRecycler.setAdapter(adapterDailyForecast);
 
     }
 
@@ -106,6 +125,11 @@ public class HomeActivity extends BaseActivity implements HomeView{
         snackbar = Snackbar.make(coordinatorLayout, R.string.invalid_zip_snack, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.invalid_zip_action, view -> openSettingsActivity());
         snackbar.show();
+    }
+
+    @Override
+    public void onBindAdapter(List<ForecastDay> forecastDays) {
+        adapterDailyForecast.swapData(forecastDays);
     }
 
     @Override

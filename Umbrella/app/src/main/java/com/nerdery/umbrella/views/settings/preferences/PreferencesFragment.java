@@ -1,4 +1,4 @@
-package com.nerdery.umbrella.views.settings.PreferencesFragment;
+package com.nerdery.umbrella.views.settings.preferences;
 
 import android.os.Bundle;
 import android.preference.ListPreference;

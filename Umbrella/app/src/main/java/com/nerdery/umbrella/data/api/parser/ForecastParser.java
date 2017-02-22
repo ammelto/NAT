@@ -8,6 +8,7 @@ import com.google.gson.JsonParseException;
 import com.nerdery.umbrella.data.model.ForecastCondition;
 
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -37,6 +38,9 @@ public class ForecastParser implements JsonDeserializer<ForecastCondition> {
         condition.displayTime = fcttime.get("civil").getAsString();
         long epochSeconds = fcttime.get("epoch").getAsLong();
         condition.time = new Date(epochSeconds * 1000);
+
+        condition.calendar = Calendar.getInstance();
+        condition.calendar.setTime(condition.time);
 
         return condition;
     }
