@@ -9,6 +9,7 @@ import javax.inject.Scope;
  * Created by Alexander Melton on 2/18/2017.
  */
 
+// Delete this, use @Singleton instead.
 @Scope
 @Retention(RetentionPolicy.CLASS)
 public @interface AppScope {

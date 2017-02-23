@@ -12,18 +12,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.base.BaseActivity;
-import com.nerdery.umbrella.data.model.ForecastCondition;
 import com.nerdery.umbrella.data.model.ForecastDay;
 import com.nerdery.umbrella.data.model.WeatherData;
-import com.nerdery.umbrella.widget.SharedPrefsManager;
 import com.nerdery.umbrella.views.settings.SettingsActivity;
+import com.nerdery.umbrella.widget.SharedPrefsManager;
 
 import java.util.List;
 
@@ -41,6 +38,7 @@ public class HomeActivity extends BaseActivity implements HomeView{
     @Inject
     HomePresenter homePresenter;
 
+    // Make these 3 items private
     ActionBar actionBar;
 
     Snackbar snackbar;
@@ -75,6 +73,8 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(dailyRecycler.getContext(),
                 linearLayoutManager.getOrientation());
+
+        // Don't use deprecated methods my dude, make this ContextCompat.getDrawable() instead.
         dividerItemDecoration.setDrawable(Umbrella.getInstance().getResources().getDrawable(R.drawable.card_gutter_12dp));
         dailyRecycler.addItemDecoration(dividerItemDecoration);
 
@@ -87,6 +87,8 @@ public class HomeActivity extends BaseActivity implements HomeView{
     protected void onResume() {
         super.onResume();
         homePresenter.attachView(this);
+
+        // This shouldn't be coming from the application.
         WeatherData cachedWeatherData = Umbrella.getInstance().getWeatherData();
         if(cachedWeatherData != null){
             homePresenter.parseWeather(cachedWeatherData);
@@ -112,6 +114,7 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public void setAreaName(String name) {
+        // Use getSupportActionBar(), this could cause memory leaks if you don't clear the actionBar out
         if(actionBar != null){
             actionBar.setTitle(name);
         }
@@ -130,6 +133,7 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public void onInvalidZip() {
+        // Why is this a member variable?
         snackbar = Snackbar.make(coordinatorLayout, R.string.invalid_zip_snack, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.invalid_zip_action, view -> openSettingsActivity());
         snackbar.show();
@@ -155,10 +159,13 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Don't put curly braces on the same line of the if statement. Either just put the statements
+        // all on one line without curly braces, or go about it normally.
         if(item.getItemId() == R.id.toolbar_settings){ openSettingsActivity(); }
         return super.onOptionsItemSelected(item);
     }
 
+    // Make sure your formatting is consistent, make spaces after every method definition.
     private void openSettingsActivity(){
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);

@@ -1,6 +1,5 @@
 package com.nerdery.umbrella.views.home;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,6 +42,7 @@ public class ViewHolderHourlyForecast extends RecyclerView.ViewHolder {
                 .error(R.drawable.ic_settings_white_24dp)
                 .into(imageView);
 
+        // Initialize this to R.color.text_default, with no else statement.
         int color;
         if(forecastHour.isLocalDailyMin) color = R.color.weather_cool;
         else if(forecastHour.isLocalDailyMax) color = R.color.weather_warm;

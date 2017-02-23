@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import timber.log.Timber;
-
 
 /**
  * Created by <a href="mailto:marcus@gabilheri.com">Marcus Gabilheri</a>
@@ -41,6 +39,7 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     public void addAll(List<T> elements) {
         mElements.addAll(elements);
         notifyDataSetChanged();
+        // Remove this zombie code my dude
         //Timber.d();
     }
 

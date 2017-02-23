@@ -17,10 +17,12 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
+    // Y tho (also unused) you can butterknife.bind in onCreateView with an abstract getView method
     protected void setUnbinder(Unbinder unbinder) {
         this.unbinder = unbinder;
     }
 
+    // unused, but keep it
     protected BaseActivity getBaseActivity(){
         return (BaseActivity) getActivity();
     }

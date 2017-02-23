@@ -12,6 +12,7 @@ public class ForecastDay {
     private List<ForecastHour> forecastHours;
     private String day;
 
+    // Love the use of comparators here, super Java-ey
     private class ForecastHourComparator implements Comparator<ForecastHour> {
         public int compare(ForecastHour a, ForecastHour b) {
             if (a.temperatureValue > b.temperatureValue)

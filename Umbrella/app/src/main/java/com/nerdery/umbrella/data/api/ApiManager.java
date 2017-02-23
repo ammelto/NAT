@@ -14,6 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  * @author bherbst
  */
+
+// Stop using this immediately, and put this shit in a module somewhere
+// Provide Retrofit instance and build APIs out in modules.
+// Static classes aren't testable, and the minute you want to mock this out to
+// MockWebServer, it will require a lot of refactoring
 public class ApiManager {
     private static WeatherApi sApi;
 

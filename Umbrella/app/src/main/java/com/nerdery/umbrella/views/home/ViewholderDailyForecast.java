@@ -1,14 +1,11 @@
 package com.nerdery.umbrella.views.home;
 
-import android.content.Context;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.nerdery.umbrella.R;
-import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.data.model.ForecastDay;
 
 import butterknife.BindView;

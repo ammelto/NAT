@@ -11,14 +11,15 @@ import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.Date;
 
-import timber.log.Timber;
-
 /**
  * Converts Weather Underground's hourly forecast data to Java objects
  *
  * @author bherbst
  */
 public class ForecastParser implements JsonDeserializer<ForecastCondition> {
+
+    // Is this necessary? You could just be using the @SerializedName annotation on fields
+    // in the ForecastCondition class.
     @Override
     public ForecastCondition deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         ForecastCondition condition = new ForecastCondition();

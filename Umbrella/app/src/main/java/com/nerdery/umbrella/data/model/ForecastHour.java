@@ -5,6 +5,8 @@ package com.nerdery.umbrella.data.model;
  */
 
 public class ForecastHour {
+
+    // Make these private, and only accessible by getter and setter
     public String temperature;
     public String imageUrl;
     public String hour;
