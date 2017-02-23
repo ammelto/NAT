@@ -15,10 +15,10 @@ public class ForecastDay {
     private class ForecastHourComparator implements Comparator<ForecastHour> {
         public int compare(ForecastHour a, ForecastHour b) {
             if (a.temperatureValue > b.temperatureValue)
-                return -1; // highest value first
+                return 1; // highest value first
             if (a.temperatureValue == b.temperatureValue)
                 return 0;
-            return 1;
+            return -1;
         }
     }
 
