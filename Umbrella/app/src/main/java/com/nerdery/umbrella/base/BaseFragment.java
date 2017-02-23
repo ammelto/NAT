@@ -17,10 +17,6 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
-    protected void setUnbinder(Unbinder unbinder) {
-        this.unbinder = unbinder;
-    }
-
     protected BaseActivity getBaseActivity(){
         return (BaseActivity) getActivity();
     }

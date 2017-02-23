@@ -41,7 +41,6 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     public void addAll(List<T> elements) {
         mElements.addAll(elements);
         notifyDataSetChanged();
-        //Timber.d();
     }
 
     public void remove(T element) {

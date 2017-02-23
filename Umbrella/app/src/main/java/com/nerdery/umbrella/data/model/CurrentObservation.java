@@ -11,15 +11,55 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CurrentObservation {
     @SerializedName("display_location")
-    public DisplayLocation displayLocation;
+    private DisplayLocation displayLocation;
 
     @SerializedName("temp_f")
-    public float tempFahrenheit;
+    private float tempFahrenheit;
 
     @SerializedName("temp_c")
-    public float tempCelsius;
+    private float tempCelsius;
 
-    public String weather;
+    private String weather;
 
-    public String icon;
+    private String icon;
+
+    public DisplayLocation getDisplayLocation() {
+        return displayLocation;
+    }
+
+    public void setDisplayLocation(DisplayLocation displayLocation) {
+        this.displayLocation = displayLocation;
+    }
+
+    public float getTempFahrenheit() {
+        return tempFahrenheit;
+    }
+
+    public void setTempFahrenheit(float tempFahrenheit) {
+        this.tempFahrenheit = tempFahrenheit;
+    }
+
+    public float getTempCelsius() {
+        return tempCelsius;
+    }
+
+    public void setTempCelsius(float tempCelsius) {
+        this.tempCelsius = tempCelsius;
+    }
+
+    public String getWeather() {
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

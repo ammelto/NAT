@@ -7,7 +7,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.nerdery.umbrella.R;
-import com.nerdery.umbrella.widget.SharedPrefsManager;
+import com.nerdery.umbrella.data.SharedPrefsManager;
 
 /**
  * Created by Alexander Melton on 2/20/2017.
@@ -15,7 +15,7 @@ import com.nerdery.umbrella.widget.SharedPrefsManager;
  * Referenced from https://developer.android.com/guide/topics/ui/settings.html
  */
 
-public class PreferencesFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener{
+public class PreferencesFragment extends PreferenceFragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,13 +28,12 @@ public class PreferencesFragment extends PreferenceFragment implements Preferenc
 
     private void setPreferenceListener(String key){
         Preference preference = findPreference(key);
-        preference.setOnPreferenceChangeListener(this);
+        preference.setOnPreferenceChangeListener(this::onPreferenceChange);
 
         String value = PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), "");
         onPreferenceChange(preference, value);
     }
 
-    @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
         String value = o.toString();
         

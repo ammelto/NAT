@@ -3,8 +3,9 @@ package com.nerdery.umbrella.dependencies.modules;
 import android.content.Context;
 
 import com.nerdery.umbrella.Umbrella;
-import com.nerdery.umbrella.dependencies.AppScope;
-import com.nerdery.umbrella.widget.SharedPrefsManager;
+import com.nerdery.umbrella.data.SharedPrefsManager;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,16 +23,15 @@ public class AppModule {
     }
 
     @Provides
-    @AppScope
+    @Singleton
     Context providesApplicationContext(){
         return application;
     }
 
     @Provides
-    @AppScope
+    @Singleton
     SharedPrefsManager providesSharedPrefsManager(){
         return new SharedPrefsManager(application);
     }
-
 
 }

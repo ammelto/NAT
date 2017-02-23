@@ -14,36 +14,92 @@ public class ForecastCondition {
     /**
      * Formatted time suitable for display
      */
-    public String displayTime;
+    private String displayTime;
 
     /**
      * Date representation of the time associated with this forecast
      */
-    public Date time;
+    private Date time;
 
     /**
      * Added
      * Date representation of the time associated with this forecast as a calendar
      */
-    public Calendar calendar;
+    private Calendar calendar;
 
     /**
      * The icon to use for this reading
      */
-    public String icon;
+    private String icon;
 
     /**
      * The human-readable name of the condition
      */
-    public String condition;
+    private String condition;
 
     /**
      * The temperature that is forecast (in degrees Fahrenheit)
      */
-    public float tempFahrenheit;
+    private float tempFahrenheit;
 
     /**
      * The temperature that is forecast (in degrees Celsius)
      */
-    public float tempCelsius;
+    private float tempCelsius;
+
+    public String getDisplayTime() {
+        return displayTime;
+    }
+
+    public void setDisplayTime(String displayTime) {
+        this.displayTime = displayTime;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public float getTempFahrenheit() {
+        return tempFahrenheit;
+    }
+
+    public void setTempFahrenheit(float tempFahrenheit) {
+        this.tempFahrenheit = tempFahrenheit;
+    }
+
+    public float getTempCelsius() {
+        return tempCelsius;
+    }
+
+    public void setTempCelsius(float tempCelsius) {
+        this.tempCelsius = tempCelsius;
+    }
 }

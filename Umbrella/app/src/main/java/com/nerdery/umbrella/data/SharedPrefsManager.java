@@ -1,4 +1,4 @@
-package com.nerdery.umbrella.widget;
+package com.nerdery.umbrella.data;
 
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -23,12 +23,16 @@ public class SharedPrefsManager {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
     }
 
-    public String getValue(String key, String value){
-        return sharedPreferences.getString(key,value);
+    public int getZip(){
+        String notFound = String.valueOf(SharedPrefsManager.ZIP_EXISTS);
+        String zip = sharedPreferences.getString(SharedPrefsManager.ZIP, notFound);
+        return zip.equals(notFound) ? SharedPrefsManager.ZIP_DEFAULT : Integer.parseInt(zip);
     }
 
-    public int getValue(String key, int value){
-        return sharedPreferences.getInt(key,value);
+
+    public String getUnits(){
+        return sharedPreferences.getString(SharedPrefsManager.UNITS, "imperial");
     }
+
 
 }

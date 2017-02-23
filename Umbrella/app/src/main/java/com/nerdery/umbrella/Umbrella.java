@@ -1,13 +1,11 @@
 package com.nerdery.umbrella;
 
 import android.app.Application;
-import android.app.TimePickerDialog;
 
-import com.nerdery.umbrella.data.model.WeatherData;
 import com.nerdery.umbrella.dependencies.AppGraph;
 import com.nerdery.umbrella.dependencies.DaggerAppGraph;
 import com.nerdery.umbrella.dependencies.modules.AppModule;
-import com.nerdery.umbrella.dependencies.modules.PresenterModule;
+import com.nerdery.umbrella.dependencies.modules.NetworkModule;
 
 import timber.log.Timber;
 
@@ -18,7 +16,6 @@ import timber.log.Timber;
 public class Umbrella extends Application {
 
     private AppGraph appGraph;
-    private WeatherData weatherData;
     private static Umbrella instance;
 
     @Override
@@ -30,7 +27,7 @@ public class Umbrella extends Application {
         appGraph = DaggerAppGraph
                 .builder()
                 .appModule(new AppModule(this))
-                .presenterModule(new PresenterModule())
+                .networkModule(new NetworkModule())
                 .build();
 
         appGraph.inject(this);
@@ -45,13 +42,5 @@ public class Umbrella extends Application {
     }
 
     public AppGraph getAppGraph(){ return appGraph;}
-
-    public WeatherData getWeatherData() {
-        return weatherData;
-    }
-
-    public void setWeatherData(WeatherData weatherData) {
-        this.weatherData = weatherData;
-    }
 
 }

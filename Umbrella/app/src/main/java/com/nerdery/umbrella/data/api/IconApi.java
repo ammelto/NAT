@@ -10,7 +10,7 @@ package com.nerdery.umbrella.data.api;
 public class IconApi {
 
     // Only allow fellow package members to create IconApi instances
-    IconApi() {}
+    // Changed this to be accessible from my network module so I can use dagger2 instead of the provided static ApiManager
 
     /**
      * Get the URL to an icon suitable for use as a replacement for the icons given by Weather Underground

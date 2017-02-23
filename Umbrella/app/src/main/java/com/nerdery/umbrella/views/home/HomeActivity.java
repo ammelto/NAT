@@ -6,23 +6,20 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nerdery.umbrella.R;
 import com.nerdery.umbrella.Umbrella;
 import com.nerdery.umbrella.base.BaseActivity;
-import com.nerdery.umbrella.data.model.ForecastCondition;
 import com.nerdery.umbrella.data.model.ForecastDay;
-import com.nerdery.umbrella.data.model.WeatherData;
-import com.nerdery.umbrella.widget.SharedPrefsManager;
+import com.nerdery.umbrella.data.SharedPrefsManager;
 import com.nerdery.umbrella.views.settings.SettingsActivity;
 
 import java.util.List;
@@ -41,11 +38,9 @@ public class HomeActivity extends BaseActivity implements HomeView{
     @Inject
     HomePresenter homePresenter;
 
-    ActionBar actionBar;
+    private ActionBar actionBar;
 
-    Snackbar snackbar;
-
-    AdapterDailyForecast adapterDailyForecast;
+    private AdapterDailyForecast adapterDailyForecast;
 
     @BindView(R.id.appbar)
     AppBarLayout appBar;
@@ -75,7 +70,8 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(dailyRecycler.getContext(),
                 linearLayoutManager.getOrientation());
-        dividerItemDecoration.setDrawable(Umbrella.getInstance().getResources().getDrawable(R.drawable.card_gutter_12dp));
+
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this ,R.drawable.card_gutter_12dp));
         dailyRecycler.addItemDecoration(dividerItemDecoration);
 
         adapterDailyForecast = new AdapterDailyForecast();
@@ -87,10 +83,6 @@ public class HomeActivity extends BaseActivity implements HomeView{
     protected void onResume() {
         super.onResume();
         homePresenter.attachView(this);
-        WeatherData cachedWeatherData = Umbrella.getInstance().getWeatherData();
-        if(cachedWeatherData != null){
-            homePresenter.parseWeather(cachedWeatherData);
-        }
     }
 
     @Override
@@ -101,9 +93,8 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public void setActionBarColor(float temp) {
-        //Using deprecated method since minimum support version is lower than the version which deprecated this function
         int color = Math.round(temp) < SharedPrefsManager.TEMPERATURE_THRESHOLD ? R.color.weather_cool : R.color.weather_warm;
-        int resource = getResources().getColor(color);
+        int resource = ContextCompat.getColor(this, color);
         ColorDrawable colorDrawable = new ColorDrawable(resource);
 
         actionBar.setBackgroundDrawable(colorDrawable);
@@ -112,8 +103,8 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public void setAreaName(String name) {
-        if(actionBar != null){
-            actionBar.setTitle(name);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle(name);
         }
     }
 
@@ -130,13 +121,13 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public void onInvalidZip() {
-        snackbar = Snackbar.make(coordinatorLayout, R.string.invalid_zip_snack, Snackbar.LENGTH_INDEFINITE)
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, R.string.invalid_zip_snack, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.invalid_zip_action, view -> openSettingsActivity());
         snackbar.show();
     }
 
     @Override
-    public void onBindAdapter(List<ForecastDay> forecastDays) {
+    public void fillForecast(List<ForecastDay> forecastDays) {
         Timber.d("Swapping in" + forecastDays.size());
         adapterDailyForecast.swapData(forecastDays);
         Timber.d("Size: " + adapterDailyForecast.getItemCount());
@@ -155,7 +146,7 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.toolbar_settings){ openSettingsActivity(); }
+        if(item.getItemId() == R.id.toolbar_settings) openSettingsActivity();
         return super.onOptionsItemSelected(item);
     }
 

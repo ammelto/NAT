@@ -24,5 +24,5 @@ public interface HomeView extends BaseView{
 
     void onInvalidZip();
 
-    void onBindAdapter(List<ForecastDay> forecastDays);
+    void fillForecast(List<ForecastDay> forecastDays);
 }

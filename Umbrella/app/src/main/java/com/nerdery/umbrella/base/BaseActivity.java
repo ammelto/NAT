@@ -2,6 +2,7 @@ package com.nerdery.umbrella.base;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,6 @@ import rx.subscriptions.CompositeSubscription;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected CompositeSubscription compositeSubscription;
-
     @Nullable @BindView(R.id.toolbar)
     public Toolbar toolbar;
 
@@ -32,11 +31,13 @@ public class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if (toolbar != null) {
+            toolbar.setTitle("");
             setSupportActionBar(toolbar);
         }
 
     }
 
+    @LayoutRes
     protected int getLayoutResource(){
         return R.layout.activity_base;
     }

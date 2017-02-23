@@ -13,6 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Manages access to the various APIs we are using
  *
  * @author bherbst
+ *
+ * Alex: Didn't really use this, injected my apis through Dagger2 since static classes aren't really testable
  */
 public class ApiManager {
     private static WeatherApi sApi;

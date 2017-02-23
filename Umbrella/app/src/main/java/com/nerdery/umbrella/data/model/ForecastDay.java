@@ -14,9 +14,9 @@ public class ForecastDay {
 
     private class ForecastHourComparator implements Comparator<ForecastHour> {
         public int compare(ForecastHour a, ForecastHour b) {
-            if (a.temperatureValue > b.temperatureValue)
+            if (a.getTemperatureValue() > b.getTemperatureValue())
                 return 1; // highest value first
-            if (a.temperatureValue == b.temperatureValue)
+            if (a.getTemperatureValue() == b.getTemperatureValue())
                 return 0;
             return -1;
         }
@@ -28,8 +28,8 @@ public class ForecastDay {
 
         ForecastHour max = Collections.max(forecastHours, new ForecastHourComparator());
         ForecastHour min = Collections.min(forecastHours, new ForecastHourComparator());
-        max.isLocalDailyMax = true;
-        min.isLocalDailyMin = true;
+        max.setLocalDailyMax(true);
+        min.setLocalDailyMin(true);
     }
 
     public List<ForecastHour> getForecastHours() {

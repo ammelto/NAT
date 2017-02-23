@@ -13,8 +13,24 @@ import java.util.List;
  */
 public class WeatherData {
     @SerializedName("current_observation")
-    public CurrentObservation currentObservation;
+    private CurrentObservation currentObservation;
 
     @SerializedName("hourly_forecast")
-    public List<ForecastCondition> forecast;
+    private List<ForecastCondition> forecast;
+
+    public CurrentObservation getCurrentObservation() {
+        return currentObservation;
+    }
+
+    public void setCurrentObservation(CurrentObservation currentObservation) {
+        this.currentObservation = currentObservation;
+    }
+
+    public List<ForecastCondition> getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(List<ForecastCondition> forecast) {
+        this.forecast = forecast;
+    }
 }
