@@ -13,6 +13,8 @@ import dagger.Provides;
 @Module
 public class PresenterModule {
 
+    // This module is unnecessary as the only necessary dependency is already provided
+    // @Inject annotate the constructor of HomePresenter.
     @Provides
     HomePresenter providesHomePresenter(SharedPrefsManager sharedPrefsManager){
         return new HomePresenter(sharedPrefsManager);

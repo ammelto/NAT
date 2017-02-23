@@ -1,14 +1,13 @@
 package com.nerdery.umbrella.base;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.nerdery.umbrella.R;
-import com.nerdery.umbrella.Umbrella;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +19,8 @@ import rx.subscriptions.CompositeSubscription;
 
 public class BaseActivity extends AppCompatActivity {
 
+    // This field is never used, Also, if you were using this, you should make it private, and only
+    // accessible via getter and/or setter methods
     protected CompositeSubscription compositeSubscription;
 
     @Nullable @BindView(R.id.toolbar)
@@ -37,6 +38,7 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    // Annotate this with an @LayoutRes annotation. It will throw a warning when you return a non layout resource
     protected int getLayoutResource(){
         return R.layout.activity_base;
     }
@@ -45,6 +47,8 @@ public class BaseActivity extends AppCompatActivity {
         attachFragment(containerViewId, fragment, false);
     }
 
+    // I personally don't like doing this in the base activity anymore, but that's 'cause
+    // Fragments are shitty.
     protected void attachFragment(int containerViewId, Fragment fragment, boolean addToBackstack){
         FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
         fragmentTransaction.replace(containerViewId, fragment, fragment.getClass().getSimpleName());

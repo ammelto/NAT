@@ -15,6 +15,7 @@ import rx.Observable;
  */
 public interface WeatherApi {
 
+    // Observables! :)
     /**
      * Get the forecast for a given zip code
      *

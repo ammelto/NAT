@@ -12,6 +12,8 @@ import java.util.List;
  * @author bherbst
  */
 public class WeatherData {
+
+    //bruh, make these private, and add getters and setters
     @SerializedName("current_observation")
     public CurrentObservation currentObservation;
 

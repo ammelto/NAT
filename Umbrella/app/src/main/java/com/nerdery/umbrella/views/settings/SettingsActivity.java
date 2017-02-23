@@ -19,6 +19,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // This is fine, and just a little pedantic comment is that I would carry on using
+        // getSupportActionBar() instead of storing a reference.
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);

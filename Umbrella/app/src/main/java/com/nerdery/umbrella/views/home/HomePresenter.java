@@ -31,10 +31,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
     private SharedPrefsManager sharedPrefsManager;
     private Subscription weatherSubscription;
+
+    // Capitalized camel case for enums, also, this isn't used.
     private enum days {
         Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
     }
 
+    // Use an @Inject annotation on this constructor, you don't need to @Provides it in a module.
     public HomePresenter(SharedPrefsManager sharedPrefsManager) {
         this.sharedPrefsManager = sharedPrefsManager;
     }
@@ -59,6 +62,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
         int zipValue = zip.equals(notFound) ? SharedPrefsManager.ZIP_DEFAULT : Integer.parseInt(zip);
 
+        // Inject the api via Dagger 2, don't use the ApiManager they provided, honestly delete that shit.
         weatherSubscription = ApiManager.getWeatherApi().getForecastForZip(zipValue)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,16 +72,19 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
     protected void parseWeather(WeatherData weatherData){
+
         List<ForecastCondition> forecastConditionList = weatherData.forecast;
         CurrentObservation currentObservation = weatherData.currentObservation;
         String unit = sharedPrefsManager.getValue(SharedPrefsManager.UNITS, "imperial");
 
-
+        // Only use getView, this is a memory leak waiting to happen.
         HomeView homeView = getView();
         if(currentObservation == null){
             homeView.onInvalidZip();
             return;
         }
+
+        // You shouldn't be accessing data like this from the application class.
         Umbrella.getInstance().setWeatherData(weatherData);
         homeView.setActionBarColor(currentObservation.tempFahrenheit);
         homeView.setAreaName(currentObservation.displayLocation.full);
@@ -85,6 +92,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 currentObservation.tempFahrenheit : currentObservation.tempCelsius);
         homeView.setFlavorText(currentObservation.weather);
 
+        // Make sure formatting is consisted, space between for and (
         for(ForecastCondition condition : forecastConditionList){
             Timber.d(condition.calendar.get(Calendar.DAY_OF_WEEK) + "");
         }
@@ -119,6 +127,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             forecastDays.add(new ForecastDay(key, forecastHoursMap.get(key)));
         }
 
+        // I'd rename this method. Fill forecast list or something.
         getView().onBindAdapter(forecastDays);
 
         return forecastDays;
@@ -129,6 +138,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
         Float tempFloat = unit.equals(SharedPrefsManager.IMPERIAL_UNITS) ? condition.tempFahrenheit : condition.tempCelsius;
 
+        // You should only be accessing these by getter and setter
         forecastHour.hour = condition.displayTime;
         forecastHour.temperatureValue = Math.round(tempFloat);
         forecastHour.temperature = String.format(Umbrella.getInstance().getResources().getString(R.string.temperature_current),

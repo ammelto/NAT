@@ -21,12 +21,14 @@ public class AppModule {
         this.application = app;
     }
 
+    // Use @Singleton instead
     @Provides
     @AppScope
     Context providesApplicationContext(){
         return application;
     }
 
+    // Use @Singleton instead
     @Provides
     @AppScope
     SharedPrefsManager providesSharedPrefsManager(){
