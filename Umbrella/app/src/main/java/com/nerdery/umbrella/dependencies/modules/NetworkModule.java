@@ -18,6 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Alexander Melton on 2/22/2017.
+ *
+ * Module for all the network dependency injections
  */
 
 @Module

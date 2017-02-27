@@ -11,6 +11,9 @@ import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/18/2017.
+ *
+ * Umbrella Application
+ * Gets the weather from a desired zipcode then displays it in Fahrenheit or Celsius
  */
 
 public class Umbrella extends Application {

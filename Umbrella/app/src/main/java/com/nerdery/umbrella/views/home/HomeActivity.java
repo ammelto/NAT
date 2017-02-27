@@ -31,6 +31,9 @@ import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/18/2017.
+ *
+ * Implementation of the view for the Home activity.
+ * Strictly view related logic goes here. Everything else should be offloaded to the presenter
  */
 
 public class HomeActivity extends BaseActivity implements HomeView{
@@ -70,7 +73,6 @@ public class HomeActivity extends BaseActivity implements HomeView{
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(dailyRecycler.getContext(),
                 linearLayoutManager.getOrientation());
-
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this ,R.drawable.card_gutter_12dp));
         dailyRecycler.addItemDecoration(dividerItemDecoration);
 
@@ -91,6 +93,13 @@ public class HomeActivity extends BaseActivity implements HomeView{
         homePresenter.detachView();
     }
 
+    /**
+     * Compares the temperature to the threshold from the shared preferences manager then changes the toolbar color to match
+     * The temperature threshold exists in the shared preferences right now incase in the future we want the option
+     * for the user to change the temperature threshold.
+     *
+     * @param temp Temperature as a float
+     */
     @Override
     public void setActionBarColor(float temp) {
         int color = Math.round(temp) < SharedPrefsManager.TEMPERATURE_THRESHOLD ? R.color.weather_cool : R.color.weather_warm;
@@ -101,6 +110,11 @@ public class HomeActivity extends BaseActivity implements HomeView{
         appBar.setBackgroundColor(resource);
     }
 
+    /**
+     * Sets the area name configured by the presenter
+     *
+     * @param name Full area name. This is [City, state abbreviation]
+     */
     @Override
     public void setAreaName(String name) {
         if(getSupportActionBar() != null){
@@ -108,17 +122,31 @@ public class HomeActivity extends BaseActivity implements HomeView{
         }
     }
 
+    /**
+     * Flavor text is the text which is to be displayed below the current temperature
+     *
+     * @param flavor String which is printed on the top appbar.
+     */
     @Override
     public void setFlavorText(String flavor) {
         textView.setText(flavor);
     }
 
+    /**
+     * Sets the current temperature on the appbar.
+     *
+     * @param temp Current observation temperature
+     */
     @Override
     public void setCurrentTemperature(float temp) {
         String temperature = String.format(getResources().getString(R.string.temperature_current), Math.round(temp));
         currentTemperatureView.setText(temperature);
     }
 
+    /**
+     * This is called when the zipcode is determined to be invalid by the presenter.
+     * In that case, the view creates a snackbar which is displayed to the user
+     */
     @Override
     public void onInvalidZip() {
         Snackbar snackbar = Snackbar.make(coordinatorLayout, R.string.invalid_zip_snack, Snackbar.LENGTH_INDEFINITE)
@@ -126,18 +154,21 @@ public class HomeActivity extends BaseActivity implements HomeView{
         snackbar.show();
     }
 
+    /**
+     * Loads the organized ForecastDay list into the DailyForecast adapter.
+     *
+     * @param forecastDays List of ForecastDay objects
+     */
     @Override
     public void fillForecast(List<ForecastDay> forecastDays) {
-        Timber.d("Swapping in" + forecastDays.size());
         adapterDailyForecast.swapData(forecastDays);
-        Timber.d("Size: " + adapterDailyForecast.getItemCount());
     }
 
     @Override
     protected int getLayoutResource() {
         return R.layout.activity_home;
     }
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);

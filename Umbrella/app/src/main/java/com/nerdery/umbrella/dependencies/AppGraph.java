@@ -12,6 +12,8 @@ import dagger.Component;
 
 /**
  * Created by Alexander Melton on 2/18/2017.
+ *
+ * Application graph for Dagger2
  */
 
 @Singleton

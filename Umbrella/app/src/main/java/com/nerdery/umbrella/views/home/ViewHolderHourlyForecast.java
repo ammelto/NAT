@@ -43,18 +43,28 @@ public class ViewHolderHourlyForecast extends RecyclerView.ViewHolder {
         Umbrella.getInstance().getAppGraph().inject(this);
     }
 
+    /**
+     * Bind is called from the adapter when data is added to the adapter's element list
+     * Most of the formatting has already been done, so we mostly just display the view elements here
+     *
+     * @param forecastHour ForecastHour cell constructed in the HomePresenter
+     */
     public void bind(ForecastHour forecastHour){
         cellHourTextView.setText(forecastHour.getHour());
         cellTemperatureTextView.setText(forecastHour.getTemperature());
+
+        //Fetch the image with Picasso since it gives us image caching, plus it's super easy to use!
         Picasso.with(itemView.getContext())
                 .load(iconApi.getUrlForIcon(forecastHour.getImageUrl(), forecastHour.getLocalDailyMax() || forecastHour.getLocalDailyMin()))
                 .error(R.drawable.ic_settings_white_24dp)
                 .into(imageView);
 
+        //Determines the color to tint the icon.
         int color = R.color.text_default;
         if(forecastHour.getLocalDailyMin()) color = R.color.weather_cool;
         else if(forecastHour.getLocalDailyMax()) color = R.color.weather_warm;
 
+        //Sets the color by passing the image through a color filter
         color = ContextCompat.getColor(itemView.getContext(), color);
         imageView.setColorFilter(color);
         cellHourTextView.setTextColor(color);

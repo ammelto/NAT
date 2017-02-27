@@ -2,6 +2,9 @@ package com.nerdery.umbrella.base.mvp;
 
 /**
  * Created by Alexander Melton on 2/12/2017.
+ *
+ * Used for logic level stuff, basically the API hands the response to the presenter and the presenter shapes
+ * it in such a way the view can understand.
  */
 
 public class BasePresenter<V extends BaseView> implements Presenter<V> {

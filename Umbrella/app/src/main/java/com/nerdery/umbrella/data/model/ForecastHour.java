@@ -5,43 +5,34 @@ package com.nerdery.umbrella.data.model;
  */
 
 public class ForecastHour {
-    private String temperature;
-    private String imageUrl;
-    private String hour;
-    private int temperatureValue;
+    private final String temperature;
+    private final String imageUrl;
+    private final String hour;
+    private final int temperatureValue;
     private Boolean isLocalDailyMax = false;
     private Boolean isLocalDailyMin = false;
 
-    public String getTemperature() {
-        return temperature;
+    public ForecastHour(String temperature, int temperatureValue, String hour, String imageUrl) {
+        this.temperature = temperature;
+        this.temperatureValue = temperatureValue;
+        this.hour = hour;
+        this.imageUrl = imageUrl;
     }
 
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
+    public String getTemperature() {
+        return temperature;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public String getHour() {
         return hour;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
     public int getTemperatureValue() {
         return temperatureValue;
-    }
-
-    public void setTemperatureValue(int temperatureValue) {
-        this.temperatureValue = temperatureValue;
     }
 
     public Boolean getLocalDailyMax() {

@@ -3,6 +3,10 @@ package com.nerdery.umbrella.data.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
+ * Edit: Changed this to have getters and a setter for the icon.
+ * Since the data is serialized from the API there's no reason to have setters.
+ * This should be immutable once called, so I made the variables private and only provided getters.
+ *
  * Represents the "current_observation" data returned from Weather Underground
  *
  * Does not include all available only data- only potentially useful fields are included
@@ -27,32 +31,16 @@ public class CurrentObservation {
         return displayLocation;
     }
 
-    public void setDisplayLocation(DisplayLocation displayLocation) {
-        this.displayLocation = displayLocation;
-    }
-
     public float getTempFahrenheit() {
         return tempFahrenheit;
-    }
-
-    public void setTempFahrenheit(float tempFahrenheit) {
-        this.tempFahrenheit = tempFahrenheit;
     }
 
     public float getTempCelsius() {
         return tempCelsius;
     }
 
-    public void setTempCelsius(float tempCelsius) {
-        this.tempCelsius = tempCelsius;
-    }
-
     public String getWeather() {
         return weather;
-    }
-
-    public void setWeather(String weather) {
-        this.weather = weather;
     }
 
     public String getIcon() {

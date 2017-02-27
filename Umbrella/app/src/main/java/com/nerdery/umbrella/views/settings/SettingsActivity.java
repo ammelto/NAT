@@ -11,6 +11,8 @@ import com.nerdery.umbrella.views.settings.preferences.PreferencesFragment;
 
 /**
  * Created by Alexander Melton on 2/18/2017.
+ *
+ * This is just used to show the preferences fragment
  */
 
 public class SettingsActivity extends BaseActivity {

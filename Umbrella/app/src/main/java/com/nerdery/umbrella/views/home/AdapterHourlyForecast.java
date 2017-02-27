@@ -11,6 +11,8 @@ import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/21/2017.
+ *
+ * Identical implementation to the DailyForecast adapter.
  */
 
 public class AdapterHourlyForecast extends BaseRecyclerAdapter<ForecastHour, ViewHolderHourlyForecast> {

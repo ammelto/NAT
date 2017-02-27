@@ -34,6 +34,8 @@ public class ViewHolderDailyForecast extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
 
+        //I don't use the dynamic grid layout manager that was provided.
+        //I found it easier to just use a generic GridLayoutManager
         recyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(), this.HOURLY_COLUMN_SPAN));
 
         adapterHourlyForecast = new AdapterHourlyForecast();
@@ -41,6 +43,12 @@ public class ViewHolderDailyForecast extends RecyclerView.ViewHolder {
 
     }
 
+    /**
+     * Called from the ForecastDay adapter when data is added to the list.
+     * All of the formatting is already done, so we just need to display it.
+     *
+     * @param forecastDay
+     */
     public void bind(ForecastDay forecastDay){
         textView.setText(forecastDay.getDay());
         adapterHourlyForecast.swapData(forecastDay.getForecastHours());

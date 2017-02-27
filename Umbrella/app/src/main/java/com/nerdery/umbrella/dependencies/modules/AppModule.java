@@ -12,6 +12,8 @@ import dagger.Provides;
 
 /**
  * Created by Alexander Melton on 2/18/2017.
+ *
+ * Module for application level dependencies
  */
 
 @Module
